@@ -17,9 +17,13 @@ const TaskList = () => {
     useEffect(() => {
         //Async function that uses axios to make a GET request to '/api/tasks'
         const fetchTasks = async () => {
-            const response = await axios.get('/tasks');
-            //Update the tasks state variable with response data
-            setTasks(response.data);
+            try {
+              const response = await axios.get("/api/tasks");
+              //Update the tasks state variable with response data
+              setTasks(response.data);
+            } catch(error) {
+                console.log(`Error getting tasks: ${error}`);
+            }
         };
   
         fetchTasks();
@@ -34,3 +38,5 @@ const TaskList = () => {
         </div>
     );
 };
+
+export default TaskList;
