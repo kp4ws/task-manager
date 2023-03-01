@@ -1,21 +1,23 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { addTask } from "../actions/taskActions";
 
-const TaskForm = () => {
+const TaskForm = ({ addTask }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const response = await axios.post("/api/tasks", { title, description });
-      console.log(response);
-      setTitle("");
-      setDescription("");
-    } catch (error) {
-      console.log(`Error creating new task: ${error}`);
-    }
+    const task = {
+      title,
+      description,
+    };
+
+    addTask(task);
+
+    setTitle("");
+    setDescription("");
   };
 
   return (
@@ -40,4 +42,4 @@ const TaskForm = () => {
   );
 };
 
-export default TaskForm;
+export default connect(null, { addTask })(TaskForm);
