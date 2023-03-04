@@ -19,10 +19,10 @@ export const addTask = (task) => async (dispatch) => {
 export const editTask = (taskID, updatedTask) => async (dispatch) => {
   try {
     const res = await axios.patch(`/api/tasks/${taskID}`, updatedTask);
-    const updatedTask = res.data;
+    const editedTask = res.data;
     dispatch({
       type: EDIT_TASK,
-      payload: updatedTask,
+      payload: editedTask,
     });
   } catch (error) {
     console.log(error);
