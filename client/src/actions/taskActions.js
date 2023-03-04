@@ -18,7 +18,7 @@ export const addTask = (task) => async (dispatch) => {
 //TODO not tested
 export const editTask = (taskID, updatedTask) => async (dispatch) => {
   try {
-    const res = await axios.patch(`/api/tasks/${task}`, updatedTask);
+    const res = await axios.patch(`/api/tasks/${taskID}`, updatedTask);
     const updatedTask = res.data;
     dispatch({
       type: EDIT_TASK,
