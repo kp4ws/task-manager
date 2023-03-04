@@ -13,6 +13,7 @@ const taskReducer = (state = initialState, action) => {
       };
 
     case DELETE_TASK:
+      console.log("test");
       return {
         ...state,
         tasks: state.tasks.filter((task) => task._id !== action.payload),
