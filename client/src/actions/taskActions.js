@@ -15,12 +15,20 @@ export const addTask = (task) => async (dispatch) => {
   }
 };
 
-//TODO: editTask
-export const editTask = (task) => async (dispatch) => {
-
+//TODO not tested
+export const editTask = (taskID, updatedTask) => async (dispatch) => {
+  try {
+    const res = await axios.patch(`/api/tasks/${task}`, updatedTask);
+    const updatedTask = res.data;
+    dispatch({
+      type: EDIT_TASK,
+      payload: updatedTask,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-//TODO: deleteTask
 export const deleteTask = (taskID) => async (dispatch) => {
   try {
     await axios.delete(`/api/tasks/${taskID}`);
@@ -35,7 +43,7 @@ export const deleteTask = (taskID) => async (dispatch) => {
 
 export const getTasks = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/tasks");
+    const res = await axios.get('/api/tasks');
     dispatch({
       type: GET_TASKS,
       payload: res.data,
