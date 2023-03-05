@@ -1,12 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteTask } from "../actions/taskActions";
+import { deleteTask, editTask } from "../actions/taskActions";
 
 const Task = ({ task, deleteTask }) => {
   const handleDelete = async (event) => {
     event.preventDefault();
     deleteTask(task._id);
   };
+
+  // //TODO
+  // const handleUpdate = async (event) => {
+  //   event.preventDefault();
+
+  //   //TODO
+  //   const updatetask = null;
+  //   editTask(task._id, updatetask);
+  // }
 
   return (
     <div>
